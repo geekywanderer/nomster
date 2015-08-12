@@ -43,13 +43,22 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <div class="clear"></div>
 
 
+<div class="col-xs-10 col-xs-offset-1">
+<h1 class="pull-left">Comments</h1>
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#commentModal">
+  Add a comment
+</button>
+</div>
+<div class="clear"></div>
+
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Add a comment</h4>
+        <h4 class="modal-title" id="commentModalLabel">Add a comment</h4>
       </div>
       <%= simple_form_for @comment, :url => place_comments_path(@place) do |f| %>
         <div class="modal-body">
@@ -65,15 +74,36 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </div>
 </div>
 
-
 <div class="col-xs-10 col-xs-offset-1">
-<h1 class="pull-left">Comments</h1>
+<h1 class="pull-left">Pictures</h1>
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">
-  Add a comment
+<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#photoModal">
+  Add a Picture
 </button>
 </div>
 <div class="clear"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="photoModalLabel">Add a Picture</h4>
+      </div>
+      <%= simple_form_for @photo, :url => place_photos_path(@place) do |f| %>
+        <div class="modal-body">
+          <%= f.input :caption %> 
+          <%= f.input :picture %>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit "Add a Picture", :class => 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 
 <% @place.comments.each do |comment| %>
@@ -86,4 +116,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <small><%= comment.user.email %></small>
     </blockquote>
   </div>
+<% end %>
+
+
+<% @place.photos.each do |photo| %>
+<div class="col-xs-12 col-sm-6">
+  <blockquote>
+  <%= image_tag photo.picture %>
+  <%= photo.caption %>
+</blockquote> 
+</div>
 <% end %>
