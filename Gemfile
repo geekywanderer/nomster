@@ -55,10 +55,12 @@ gem "figaro", ">= 1.0.0"
 
 gem 'carrierwave'
 
+gem "fog", "~> 1.3.1"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
-# Use unicorn as the app server
+# Use unicorn as the app server 
 # gem 'unicorn'
 
 # Use Capistrano for deployment
