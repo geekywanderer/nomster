@@ -105,7 +105,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </div>
 </div>
 
-
 <% @place.comments.each do |comment| %>
   <div class="col-xs-12 col-sm-6">
     <blockquote>
@@ -119,10 +118,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <% end %>
 
 
+
 <% @place.photos.each do |photo| %>
 <div class="col-xs-12 col-sm-6">
   <blockquote>
-  <%= image_tag photo.picture %>
+  <%= image_tag photo.picture, :class => 'img-responsive' %>
   <%= photo.caption %>
 </blockquote> 
 </div>
